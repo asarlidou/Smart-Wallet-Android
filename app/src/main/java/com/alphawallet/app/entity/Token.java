@@ -215,7 +215,7 @@ public class Token implements Parcelable
         return ethBalance.setScale(scale, RoundingMode.HALF_DOWN).stripTrailingZeros();
     }
 
-    public void setupContent(TokenHolder holder, AssetDefinitionService definition)
+    public void setupContent(TokenHolder holder, AssetDefinitionService definition, Context ctx)
     {
         BigDecimal ethBalance = getCorrectedBalance(4);
         String value = ethBalance.compareTo(BigDecimal.ZERO) == 0 ? "0" : ethBalance.toPlainString();
@@ -276,6 +276,7 @@ public class Token implements Parcelable
             holder.textAppreciationSub.setText(R.string.appreciation);
             holder.fillCurrency(ethBalance, ticker);
             holder.text24HoursSub.setText(R.string.twenty_four_hours);
+            if (ticker.priceSymbol != null && ticker.priceSymbol.length() > 0) holder.currencyLabel.setText(ticker.priceSymbol);
         }
 
         holder.balanceEth.setVisibility(View.VISIBLE);
@@ -671,7 +672,7 @@ public class Token implements Parcelable
 
     protected String addSuffix(String result, Transaction transaction)
     {
-        if (transaction.from.equals(tokenWallet))
+        if (transaction.from.equalsIgnoreCase(tokenWallet.toLowerCase()))
         {
             result = "-" + result;
         }
@@ -796,8 +797,10 @@ public class Token implements Parcelable
 
         long currentTime = System.currentTimeMillis();
 
-        //ensure chain transactions fomr the wallet are checked on a regular basis.
-        if (isEthereum() && hasPositiveBalance() && (currentTime - lastTxCheck) > 60*1000) //need to check main chains once per minute
+        long multiplier = isEthereum() ? 1 : 5;
+
+        //ensure chain transactions for the wallet are checked on a regular basis.
+        if (hasTicker() && hasPositiveBalance() && (currentTime - lastTxCheck) > multiplier*60*1000) //need to check main chains once per minute
         {
             lastTxCheck = currentTime; //don't check again
             requiresUpdate = true;
@@ -855,4 +858,8 @@ public class Token implements Parcelable
     }
 
     public boolean isERC875() { return false; }
+    public boolean hasTicker()
+    {
+        return false;
+    }
 }

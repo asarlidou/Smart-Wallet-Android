@@ -269,6 +269,7 @@ public class TokensRealmSource implements TokenLocalSource {
                     realmItem.setImage(TextUtils.isEmpty(tokenTicker.image)
                             ? String.format(COINMARKETCAP_IMAGE_URL, tokenTicker.id)
                             : tokenTicker.image);
+                    realmItem.setCurrencySymbol(tokenTicker.priceSymbol);
                     realmItem.setUpdatedTime(now);
                 }
                 realm.commitTransaction();
@@ -291,7 +292,7 @@ public class TokensRealmSource implements TokenLocalSource {
             ArrayList<TokenTicker> tokenTickers = new ArrayList<>();
             Realm realm = null;
             try {
-                realm = realmManager.getRealmInstance(wallet);
+                realm = realmManager.getAuxRealmInstance(wallet.address);
                 realm.beginTransaction();
                 long minCreatedTime = System.currentTimeMillis() - ACTUAL_TOKEN_TICKER_INTERVAL;
                 RealmResults<RealmTokenTicker> rawItems = realm.where(RealmTokenTicker.class)
@@ -307,6 +308,7 @@ public class TokensRealmSource implements TokenLocalSource {
                                 rawItem.getContract(),
                                 rawItem.getPrice(),
                                 rawItem.getPercentChange24h(),
+                                rawItem.getCurrencySymbol(),
                                 rawItem.getImage()));
                     }
                 }

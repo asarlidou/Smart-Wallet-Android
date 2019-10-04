@@ -163,7 +163,7 @@ public class Ticket extends Token implements Parcelable
     }
 
     @Override
-    public void setupContent(TokenHolder tokenHolder, AssetDefinitionService asset)
+    public void setupContent(TokenHolder tokenHolder, AssetDefinitionService asset, Context ctx)
     {
         tokenHolder.balanceCurrency.setText("--");
         tokenHolder.textAppreciation.setText("--");

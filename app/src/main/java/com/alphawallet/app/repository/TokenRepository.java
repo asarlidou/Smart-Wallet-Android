@@ -723,7 +723,8 @@ public class TokenRepository implements TokenRepositoryType {
                 })
                 .flatMap(token -> ethereumNetworkRepository.getTicker(network.chainId)
                         .map(ticker -> {
-                            token.ticker = new TokenTicker(String.valueOf(network.chainId), wallet.address, ticker.price_usd, ticker.percentChange24h, null);
+                            token.ticker = new TokenTicker(ticker, wallet.address, null);
+                            //token.ticker = new TokenTicker(String.valueOf(network.chainId), wallet.address, ticker.price_usd, ticker.percentChange24h, null);
                             return token;
                         }).onErrorResumeNext(throwable -> Single.just(token)));
     }

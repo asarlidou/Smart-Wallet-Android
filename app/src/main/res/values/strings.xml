@@ -225,7 +225,7 @@
     <string name="help_question5">How do I transfer ETH into my wallet?</string>
     <string name="twenty_four_hours">24 hours</string>
     <string name="appreciation">Appreciation</string>
-    <string name="usd_value">USD Value</string>
+    <string name="usd_value">USD</string>
     <string name="my_listings">My Listings</string>
     <string name="fifa_2018">FIFA 2018</string>
     <string name="eth_per_ticket">%1s/Ticket</string>
@@ -597,4 +597,6 @@
     <string name="tokenscript_error">TokenScript Element Error</string>
     <string name="tokenscript_error_detail">Error in TokenScript element: %1$s</string>
     <string name="tokenscript_element_not_present">function input \'%1$s\' not found in HTML elements.</string>
+    <string name="value_label">%1$s value</string>
+    <string name="currency_value_label">VALUE</string>
 </resources>

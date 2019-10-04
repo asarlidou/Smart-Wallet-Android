@@ -87,7 +87,7 @@ public class ERC721Token extends Token implements Parcelable
     }
 
     @Override
-    public void setupContent(TokenHolder holder, AssetDefinitionService definition)
+    public void setupContent(TokenHolder holder, AssetDefinitionService definition, Context ctx)
     {
         //721 Balance
         int balance = tokenBalance.size();
