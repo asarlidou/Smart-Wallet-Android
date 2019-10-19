@@ -1,7 +1,7 @@
 package com.alphawallet.app.service.boc;
 
-import com.boc.client.model.AccessTokenResponse;
-import com.boc.client.service.AuthorizationService;
+import com.alphawallet.app.util.boc.AccessTokenResponse;
+import com.alphawallet.app.util.boc.AuthorizationService;
 
 import java.util.concurrent.Callable;
 

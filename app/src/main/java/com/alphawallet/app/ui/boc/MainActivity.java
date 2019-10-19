@@ -18,7 +18,9 @@ import com.alphawallet.app.service.boc.BocAccountsService;
 import com.alphawallet.app.service.boc.BocAuthorizationService;
 import com.alphawallet.app.service.boc.BocSubscriptionService;
 import com.alphawallet.app.util.boc.AccessTokenResponse;
+import com.alphawallet.app.util.boc.Account;
 import com.alphawallet.app.util.boc.ApiConfiguration;
+import com.alphawallet.app.util.boc.CreateSubscriptionResponse;
 import com.alphawallet.app.util.boc.SubscriptionView;
 import com.alphawallet.app.util.boc.UpdateSubscriptionResponse;
 import com.alphawallet.app.util.boc.Utilities;
@@ -27,7 +29,6 @@ import com.testfairy.TestFairy;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -195,9 +196,9 @@ public class MainActivity extends AppCompatActivity implements ApiConfiguration 
                             }
                         })
                         // Async call to BOC Java SDK library. Get the response from getSubscriptionID info, as well as the accessToken, and patch the subscription
-                        .flatMap(new Function<List<SubscriptionView>, Single<UpdateSubscriptionResponse>>() {
+                        .flatMap(new Function<List<SubscriptionView>, SingleSource<UpdateSubscriptionResponse>>() {
                             @Override
-                            public Single<UpdateSubscriptionResponse> apply(List<SubscriptionView> subscriptionViewList) throws Exception {
+                            public SingleSource<UpdateSubscriptionResponse> apply(List<SubscriptionView> subscriptionViewList) throws Exception {
                                 return mSubscriptionService.patchSubscriptionIdInfo(subscriptionViewList,subId,token2);
                             }
                         })
@@ -229,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements ApiConfiguration 
                             }
                         }));
     }
+
 
     /**
      * Create a new subscription by calling the BOC APIs (RxJava call).

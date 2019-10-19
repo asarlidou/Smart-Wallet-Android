@@ -6,6 +6,9 @@ import com.alphawallet.app.util.boc.ApiConfiguration;
 import com.alphawallet.app.util.boc.CreateSubscriptionRequest;
 import com.alphawallet.app.util.boc.CreateSubscriptionResponse;
 import com.alphawallet.app.util.boc.PaymentView;
+import com.alphawallet.app.util.boc.SubscriptionView;
+import com.alphawallet.app.util.boc.UpdateSubscriptionRequest;
+import com.alphawallet.app.util.boc.UpdateSubscriptionResponse;
 
 import java.math.BigDecimal;
 import java.util.List;

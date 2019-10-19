@@ -1,10 +1,11 @@
 package com.alphawallet.app.service.boc;
 
-import com.boc.client.api.ApiConfiguration;
-import com.boc.client.model.Account;
-import com.boc.client.model.Balance;
-import com.boc.client.model.Statement;
-import com.boc.client.service.AccountsService;
+
+
+import com.alphawallet.app.util.boc.Account;
+import com.alphawallet.app.util.boc.ApiConfiguration;
+import com.alphawallet.app.util.boc.Balance;
+import com.alphawallet.app.util.boc.Statement;
 
 import java.math.BigDecimal;
 import java.util.List;

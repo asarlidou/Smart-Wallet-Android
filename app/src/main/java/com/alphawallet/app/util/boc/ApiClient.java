@@ -223,7 +223,7 @@ public class ApiClient implements ApiConfiguration {
         return this;
     }
 
-    public ApiClient registerAccessTokenListener(AccessTokenListener accessTokenListener) {
+    public ApiClient registerAccessTokenListener(OAuth.AccessTokenListener accessTokenListener) {
         Iterator var2 = this.apiAuthorizations.values().iterator();
 
         Interceptor apiAuthorization;
